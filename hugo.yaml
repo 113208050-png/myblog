@@ -1,0 +1,68 @@
+# 上線後改成你的 Cloudflare Pages 網址（或自訂網域）
+baseURL: "https://myblog.pages.dev/"
+locale: zh-tw
+defaultContentLanguage: zh-tw
+title: 我的部落格
+theme: PaperMod
+
+enableRobotsTXT: true
+ignoreFiles: ['README\.md$']   # 資料夾裡的說明檔不發佈
+hasCJKLanguage: true
+pagination:
+  pagerSize: 10
+
+params:
+  env: production
+  description: "我的個人部落格：學習筆記、生活紀錄與專案分享。"
+  author: 你的名字
+  images: []            # 預設分享縮圖，例如 ["images/og.png"]
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  homeInfoParams:
+    Title: "嗨，歡迎來到我的部落格 👋"
+    Content: "這裡記錄我的學習與生活。"
+  socialIcons:
+    - name: instagram
+      url: https://www.instagram.com/bluewind0812/
+    - name: email
+      url: mailto:bluewindblog@gmail.com
+    - name: rss
+      url: index.xml
+
+menu:
+  main:
+    - name: 文章
+      url: /posts/
+      weight: 10
+    - name: 關於我
+      url: /about/
+      weight: 20
+    - name: 分類標籤
+      url: /tags/
+      weight: 30
+    - name: 搜尋
+      url: /search/
+      weight: 40
+
+mediaTypes:
+  text/markdown:
+    suffixes: [md]
+
+outputFormats:
+  llms:
+    mediaType: text/plain
+    baseName: llms
+    isPlainText: true
+    notAlternative: true
+  markdown:
+    mediaType: text/markdown
+    baseName: index
+    isPlainText: true
+
+outputs:
+  home: [HTML, RSS, JSON, llms]
+  page: [HTML, markdown]

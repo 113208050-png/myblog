@@ -1,0 +1,32 @@
+{{- /* 用法：{{< resume "experience" >}} / {{< resume "education" >}} / {{< resume "skills" >}} */ -}}
+{{- $p := hugo.Data.profile -}}
+{{- $kind := .Get 0 -}}
+{{- if eq $kind "skills" }}
+<ul class="hl-skills">
+  {{- range $p.skills }}
+  <li>
+    <span>{{ .name }}</span>
+    {{- $level := int .level }}
+    <span class="hl-meter" role="img" aria-label="{{ $level }} / 5">
+      {{- range seq 5 }}<i{{ if le . $level }} class="on"{{ end }}></i>{{ end -}}
+    </span>
+  </li>
+  {{- end }}
+</ul>
+{{- else }}
+<ol class="hl-timeline">
+  {{- range index $p $kind }}
+  <li>
+    <div class="hl-when">{{ .start }} – {{ .end }}</div>
+    <div class="hl-what">
+      {{- if eq $kind "education" }}
+      <strong>{{ .school }}</strong><span>{{ .department }}{{ with .degree }} · {{ . }}{{ end }}</span>
+      {{- else }}
+      <strong>{{ .org }}</strong><span>{{ .role }}</span>
+      {{- end }}
+      {{- with .description }}<p>{{ . | markdownify }}</p>{{ end }}
+    </div>
+  </li>
+  {{- end }}
+</ol>
+{{- end }}

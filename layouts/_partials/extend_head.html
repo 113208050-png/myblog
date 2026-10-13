@@ -1,0 +1,26 @@
+{{- /* 字型：先 preconnect 再載入，避免阻塞 */ -}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+
+{{- $p := hugo.Data.profile }}
+{{- if .Params.profilePage }}
+{{- with $p.avatar }}<link rel="preload" as="image" href="{{ . | relURL }}" fetchpriority="high">{{ end }}
+{{- $person := dict "@type" "Person" "name" $p.name "description" $p.bio "url" site.Home.Permalink }}
+{{- with $p.avatar }}{{ $person = merge $person (dict "image" (. | absURL)) }}{{ end }}
+{{- with $p.sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end }}
+{{- with $p.education }}
+  {{- $schools := slice }}
+  {{- range . }}{{ $schools = $schools | append (dict "@type" "CollegeOrUniversity" "name" .school) }}{{ end }}
+  {{- $person = merge $person (dict "alumniOf" $schools) }}
+{{- end }}
+{{- $faq := slice }}
+{{- range $p.faq }}
+  {{- $faq = $faq | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) }}
+{{- end }}
+{{- $graph := slice (dict "@type" "ProfilePage" "url" .Permalink "name" .Title "mainEntity" $person) }}
+{{- with $faq }}{{ $graph = $graph | append (dict "@type" "FAQPage" "mainEntity" .) }}{{ end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>
+{{- end }}

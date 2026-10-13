@@ -1,0 +1,14 @@
+# 個人資料：只改這裡，關於我頁、結構化資料、llms.txt 都會跟著更新
+name: 你的名字
+tagline: 一句話介紹自己
+bio: 用兩三句話介紹你是誰、在做什麼、這個部落格會寫什麼。
+avatar: ""            # 例如 /images/avatar.jpg（圖片放在 static/images/）
+email: bluewindblog@gmail.com
+sameAs:               # 你的其他公開頁面，搜尋引擎會把它們視為同一個人
+  - https://www.instagram.com/bluewind0812/
+
+faq:
+  - q: 這個部落格會寫什麼？
+    a: 學習筆記、生活紀錄，以及我正在做的專案。
+  - q: 怎麼聯絡我？
+    a: 寄 Email 給我，或到 Instagram 私訊。

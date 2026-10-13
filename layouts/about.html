@@ -1,0 +1,17 @@
+{{- define "main" }}
+{{- $p := hugo.Data.profile }}
+<article class="post-single">
+  <header class="hl-hero">
+    {{- with $p.avatar }}
+    <img class="hl-avatar" src="{{ . | relURL }}" alt="{{ $p.name }}" width="96" height="96" fetchpriority="high">
+    {{- end }}
+    <h1 class="post-title">{{ $p.name }}</h1>
+    <p class="hl-tagline">{{ $p.tagline }}</p>
+    <p>{{ $p.bio }}</p>
+    {{- partial "social_icons.html" (dict "align" "center") }}
+  </header>
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+</article>
+{{- end }}

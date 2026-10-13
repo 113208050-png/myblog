@@ -1,0 +1,9 @@
+{{- /* 用法：{{< faq >}}，問答內容在 data/profile.yaml 的 faq */ -}}
+<div class="hl-faq">
+  {{- range hugo.Data.profile.faq }}
+  <details>
+    <summary>{{ .q }}</summary>
+    <div>{{ .a | markdownify }}</div>
+  </details>
+  {{- end }}
+</div>

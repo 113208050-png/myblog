@@ -1,0 +1,159 @@
+/* ========== 設計 token：換風格只改這一段（極簡風：留白、大標題、毛玻璃） ========== */
+:root {
+  --brand: #0066CC;           /* 連結藍 */
+  --brand-strong: #0071E3;    /* 按鈕藍 */
+  --ink: #1D1D1F;             /* 主要文字 */
+  --muted: #6E6E73;           /* 次要文字 */
+  --surface: #F5F5F7;         /* 卡片／區塊底色 */
+  --glass: rgb(255 255 255 / .72);
+  --radius: 18px;
+  --tracking-tight: -0.022em;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang TC",
+          "Noto Sans TC", "Helvetica Neue", "Microsoft JhengHei", sans-serif;
+
+  /* 覆寫 PaperMod 變數 */
+  --primary: var(--ink);
+  --secondary: var(--muted);
+  --content: #333336;
+  --theme: #FFFFFF;
+  --entry: var(--surface);
+  --tertiary: #D2D2D7;
+  --border: #E8E8ED;
+  --main-width: 760px;
+}
+
+:root[data-theme="dark"] {
+  --brand: #2997FF;
+  --brand-strong: #0A84FF;
+  --ink: #F5F5F7;
+  --muted: #86868B;
+  --surface: #1D1D1F;
+  --glass: rgb(22 22 23 / .72);
+  --primary: var(--ink);
+  --secondary: var(--muted);
+  --content: #E8E8ED;
+  --theme: #000000;
+  --entry: var(--surface);
+  --tertiary: #424245;
+  --border: #2C2C2E;
+}
+
+/* ========== 全站 ========== */
+body {
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: .01em;
+}
+
+h1, h2, h3, .post-title, .entry-header h2, .logo a {
+  letter-spacing: var(--tracking-tight);
+  font-weight: 700;
+}
+
+.list { background: var(--theme); }   /* PaperMod 列表頁預設灰底，改回白底讓卡片浮出 */
+
+/* 毛玻璃導覽列 */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--glass);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav { max-width: 980px; }
+.logo a { font-size: 19px; }
+#menu a { font-size: 14px; color: var(--muted); }
+#menu a:hover, #menu .active { color: var(--ink); border-bottom: none; }
+
+.post-content a { color: var(--brand); box-shadow: none; }
+.post-content a:hover { text-decoration: underline; }
+
+/* ========== 首頁 ========== */
+.home-info {
+  text-align: center;
+  padding: 72px 0 48px;
+  margin-bottom: 8px;
+  background: none;
+}
+.home-info .entry-header h1 {
+  font-size: clamp(36px, 7vw, 56px);
+  line-height: 1.07;
+}
+.home-info .entry-content {
+  font-size: 21px; color: var(--muted); margin-top: 12px;
+}
+.home-info .social-icons { justify-content: center; margin-top: 20px; }
+
+/* 文章卡片：無框淺灰底、大圓角、輕微浮起 */
+.post-entry {
+  background: var(--surface);
+  border: none;
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: transform .3s cubic-bezier(.25,.1,.25,1), box-shadow .3s;
+}
+.post-entry:hover {
+  transform: scale(1.012);
+  box-shadow: 0 12px 32px rgb(0 0 0 / .08);
+}
+.post-entry .entry-header h2 { font-size: 24px; }
+.entry-footer { color: var(--muted); }
+
+/* 藥丸形標籤與分頁 */
+.post-tags a, .terms-tags a {
+  border-radius: 999px; background: var(--surface); border: none;
+}
+.pagination a, .paginav { border-radius: 999px; }
+.pagination a { background: var(--brand-strong); color: #fff; }
+
+/* 文章頁 */
+.post-header .post-title { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; }
+.post-content { font-size: 17px; line-height: 1.75; }
+.post-content blockquote { border-inline-start: 3px solid var(--brand-strong); }
+.toc { background: var(--surface); border: none; border-radius: 12px; }
+
+/* ========== 關於我 ========== */
+.hl-hero { text-align: center; padding: 56px 0 40px; margin-bottom: 24px; }
+.hl-avatar {
+  width: 112px; height: 112px; border-radius: 50%;
+  object-fit: cover; margin: 0 auto 20px;
+}
+.hl-hero .post-title { font-size: clamp(36px, 7vw, 56px); margin-bottom: 8px; }
+.hl-tagline { font-size: 21px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+.hl-hero p { color: var(--muted); }
+.hl-hero .social-icons { margin-top: 16px; }
+
+.post-content h2 { margin-top: 48px; }
+
+.hl-timeline { list-style: none; padding: 0; margin: 0; }
+.post-content .hl-timeline li {
+  display: grid; grid-template-columns: 7.5em 1fr; gap: 16px;
+  padding: 16px 0; margin: 0; border-bottom: 1px solid var(--border);
+}
+.hl-when { color: var(--muted); font-size: .9em; }
+.hl-what strong { display: block; color: var(--ink); }
+.hl-what span { color: var(--muted); }
+.post-content .hl-what p { margin: 6px 0 0; }
+
+.hl-skills { list-style: none; padding: 0; }
+.post-content .hl-skills li { display: flex; justify-content: space-between; align-items: center; margin: 12px 0; }
+.hl-meter { display: inline-flex; gap: 4px; }
+.hl-meter i { display: block; width: 24px; height: 6px; border-radius: 999px; background: var(--tertiary); }
+.hl-meter i.on { background: var(--brand-strong); }
+
+.hl-faq details {
+  background: var(--surface); border-radius: 14px;
+  padding: 16px 20px; margin-bottom: 10px;
+}
+.hl-faq summary { cursor: pointer; font-weight: 600; list-style: none; }
+.hl-faq summary::-webkit-details-marker { display: none; }
+.hl-faq summary::after { content: "+"; float: right; color: var(--brand-strong); font-size: 1.2em; }
+.hl-faq details[open] summary::after { content: "−"; }
+.hl-faq details[open] summary { margin-bottom: 8px; }
+
+@media (max-width: 480px) {
+  .home-info { padding: 48px 0 32px; }
+  .home-info .entry-content, .hl-tagline { font-size: 18px; }
+  .post-entry { padding: 22px; }
+  .post-content .hl-timeline li { grid-template-columns: 1fr; gap: 2px; }
+}

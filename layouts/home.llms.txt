@@ -1,0 +1,21 @@
+{{- $p := hugo.Data.profile -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+## 作者
+
+- 名字：{{ $p.name }}
+- 簡介：{{ $p.tagline }}。{{ $p.bio }}
+{{- with $p.sameAs }}
+- 其他頁面：{{ delimit . "、" }}
+{{- end }}
+
+## 頁面
+
+- [關於我]({{ "about/index.md" | absURL }})
+
+## 文章
+{{ range where site.RegularPages "Section" "posts" }}
+- [{{ .Title }}]({{ with .OutputFormats.Get "markdown" }}{{ .Permalink }}{{ end }})（{{ .Date.Format "2006-01-02" }}）：{{ .Summary | plainify | htmlUnescape | truncate 80 }}
+{{- end }}

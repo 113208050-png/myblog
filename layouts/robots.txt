@@ -1,0 +1,10 @@
+{{- $allow := hugo.IsProduction | or (eq site.Params.env "production") -}}
+{{- range slice "*" "GPTBot" "ClaudeBot" "PerplexityBot" "Google-Extended" }}
+User-agent: {{ . }}
+{{- if $allow }}
+Allow: /
+{{- else }}
+Disallow: /
+{{- end }}
+{{ end }}
+Sitemap: {{ "sitemap.xml" | absURL }}
