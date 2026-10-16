@@ -1,0 +1,10 @@
+// Cloudflare Workers 設定：把 Hugo 產生的 public/ 當成靜態網站發佈
+{
+  // 必須和 Cloudflare 後台填的 Worker 名稱一模一樣
+  "name": "bluewind-blog",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}
