@@ -1,5 +1,5 @@
-# 上線後改成你的 Cloudflare Pages 網址（或自訂網域）
-baseURL: "https://myblog.pages.dev/"
+# 正式網址（Cloudflare Workers）；之後換自訂網域時改這裡
+baseURL: "https://bluewind-blog.bluewindblog.workers.dev/"
 locale: zh-tw
 defaultContentLanguage: zh-tw
 title: 我的部落格
