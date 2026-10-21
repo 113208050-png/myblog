@@ -51,8 +51,15 @@ menu:
 mediaTypes:
   text/markdown:
     suffixes: [md]
+  text/cf-headers:        # Cloudflare 的 _headers 檔（沒有副檔名）
+    delimiter: ""
 
 outputFormats:
+  headers:
+    mediaType: text/cf-headers
+    baseName: _headers
+    isPlainText: true
+    notAlternative: true
   llms:
     mediaType: text/plain
     baseName: llms
@@ -64,5 +71,5 @@ outputFormats:
     isPlainText: true
 
 outputs:
-  home: [HTML, RSS, JSON, llms]
+  home: [HTML, RSS, JSON, llms, headers]
   page: [HTML, markdown]
