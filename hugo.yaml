@@ -6,6 +6,9 @@ title: 我的部落格
 theme: PaperMod
 
 enableRobotsTXT: true
+enableGitInfo: true            # 從 Git 紀錄自動取得文章的最後修改日期
+frontmatter:
+  lastmod: [lastmod, ":git", date]   # 文章裡手動寫 lastmod 時優先使用
 ignoreFiles: ['README\.md$']   # 資料夾裡的說明檔不發佈
 hasCJKLanguage: true
 pagination:
@@ -17,6 +20,7 @@ params:
   author: 你的名字
   images: []            # 預設分享縮圖，例如 ["images/og.png"]
   defaultTheme: auto
+  DateFormat: "2006-01-02"   # 日期顯示格式，例如 2026-10-21
   ShowReadingTime: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true
