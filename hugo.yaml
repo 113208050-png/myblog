@@ -28,10 +28,6 @@ params:
   socialIcons:
     - name: instagram
       url: https://www.instagram.com/bluewind0812/
-    - name: email
-      url: mailto:bluewindblog@gmail.com
-    - name: rss
-      url: index.xml
 
 menu:
   main:
